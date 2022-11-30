@@ -1,0 +1,60 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>Navigation</mat-drawer>
+  <mat-drawer-content>
+    <mat-form-field appearance="fill">
+      <mat-label>CSV File</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <div class="text-center">
+      <input class="form-control" type="file" (change)="onChange($event)">
+    
+      <button (click)="onUpload()" class="btn btn-success">Upload CSV File</button>
+    </div>
+      
+    <!--Flag variable is used here-->
+    <!-- <div class="container" *ngIf="loading">
+        <h3>Loading ...</h3>
+    </div> -->
+    <!-- <div class="mat-elevation-z8"> -->
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+      
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ID"> ID </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.id}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="login">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by login"> Login </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.login}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.name}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="salary">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by salary"> Salary </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.salary}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let employee"> 
+            <!-- <button mat-button id="{{employee.id}}" (click)="onEdit()">Edit</button> -->
+            <button mat-button (click)="onDelete(employee.id)">Delete</button>  
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    <!-- </div> -->
+  </mat-drawer-content>
+</mat-drawer-container>
